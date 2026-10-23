@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102c25">
+  <meta name="description" content="VIDA te ayuda a resolver tareas y complicaciones cotidianas.">
+  <title>VIDA — Tu día, más fácil</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#inicio" aria-label="VIDA, inicio">
+        <span class="brand-icon">V</span>
+        <span class="brand-name">VIDA<span class="brand-dot">.</span></span>
+      </a>
+
+      <p class="nav-label">TU ESPACIO</p>
+      <nav class="navigation" aria-label="Navegación principal">
+        <a class="nav-link active" href="#inicio" data-view="inicio">
+          <span aria-hidden="true">⌂</span> Inicio
+        </a>
+        <a class="nav-link" href="#asistente" data-view="asistente">
+          <span aria-hidden="true">✳</span> Asistente VIDA
+        </a>
+        <a class="nav-link" href="#tareas" data-view="tareas">
+          <span aria-hidden="true">✓</span> Mis tareas
+        </a>
+        <a class="nav-link" href="#herramientas" data-view="herramientas">
+          <span aria-hidden="true">▦</span> Herramientas
+        </a>
+        <a class="nav-link" href="#notas" data-view="notas">
+          <span aria-hidden="true">▤</span> Mis notas
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-note">
+          <span aria-hidden="true">◈</span>
+          <div>
+            <strong>Tu espacio personal</strong>
+            <p>Organiza tu día a tu manera.</p>
+          </div>
+        </div>
+        <p class="sidebar-version">VIDA · Primera versión</p>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menu-toggle"
+          type="button" aria-label="Abrir menú" aria-expanded="false">
+          ☰
+        </button>
+        <div class="breadcrumb">Mi espacio <span>/</span> <strong id="page-name">Inicio</strong></div>
+        <div class="topbar-actions">
+          <span class="status-indicator"></span>
+          <span class="status-label">Tu espacio</span>
+        </div>
+      </header>
+
+      <section class="view active-view" id="view-inicio" data-page="inicio">
+        <div class="welcome-section">
+          <p class="eyebrow">TU COMPAÑERO DE CADA DÍA</p>
+          <h1>Hola, ¿qué vamos a<br class="desktop-break"> resolver hoy?</h1>
+          <p class="welcome-description">
+            Organiza tus ideas, resuelve pequeñas complicaciones
+            y convierte tus planes en acciones.
+          </p>
+        </div>
+
+        <section class="assistant-card" aria-labelledby="assistant-title">
+          <div class="assistant-orb" aria-hidden="true">✳</div>
+          <div class="assistant-intro">
+            <span class="assistant-tag">ASISTENTE PERSONAL</span>
+            <h2 id="assistant-title">Cuéntame qué necesitas.</h2>
+            <p>Escribe una pregunta o dime qué quieres conseguir.</p>
+          </div>
+          <form class="prompt-form" id="assistant-form">
+            <label class="sr-only" for="assistant-input">¿Qué necesitas resolver?</label>
+            <textarea id="assistant-input" name="message" rows="2"
+              maxlength="2000"
+              placeholder="Ej.: Ayúdame a organizar mis gastos de esta semana..."
+              required></textarea>
+            <div class="prompt-footer">
+              <span class="input-hint">Describe tu necesidad con tus palabras.</span>
+              <button class="primary-button" type="submit">
+                Consultar <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </form>
+          <div class="suggestion-list" aria-label="Ideas para comenzar">
+            <button class="suggestion-chip" type="button" data-prompt="Ayúdame a organizar mi día.">Organizar mi día</button>
+            <button class="suggestion-chip" type="button" data-prompt="Ayúdame a preparar un presupuesto sencillo.">Organizar mi dinero</button>
+            <button class="suggestion-chip" type="button" data-prompt="Ayúdame a redactar un mensaje claro y amable.">Redactar un mensaje</button>
+          </div>
+          <div id="assistant-result" class="assistant-result" role="status" aria-live="polite" hidden></div>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">TU DÍA A DÍA</p>
+              <h2>¿En qué te ayudamos?</h2>
+            </div>
+            <span class="section-caption">Herramientas prácticas</span>
+          </div>
+
+          <div class="tool-grid">
+            <a class="tool-card" href="#tareas" data-view="tareas">
+              <span class="tool-icon icon-green" aria-hidden="true">✓</span>
+              <span class="tool-card-title">Organizar tareas</span>
+              <span class="tool-card-description">Pon tus pendientes en orden y avanza a tu ritmo.</span>
+              <span class="tool-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="tool-card" href="#herramientas" data-view="herramientas">
+              <span class="tool-icon icon-yellow" aria-hidden="true">＋</span>
+              <span class="tool-card-title">Hacer cálculos</span>
+              <span class="tool-card-description">Calcula gastos, divisiones y presupuestos.</span>
+              <span class="tool-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="tool-card" href="#notas" data-view="notas">
+              <span class="tool-icon icon-purple" aria-hidden="true">▤</span>
+              <span class="tool-card-title">Guardar ideas</span>
+              <span class="tool-card-description">Anota algo importante para volver a verlo.</span>
+              <span class="tool-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="tool-card" href="#asistente" data-view="asistente">
+              <span class="tool-icon icon-blue" aria-hidden="true">✳</span>
+              <span class="tool-card-title">Buscar soluciones</span>
+              <span class="tool-card-description">Explica tu problema y empieza a resolverlo.</span>
+              <span class="tool-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="dashboard-section task-preview">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">PEQUEÑOS PASOS, GRANDES LOGROS</p>
+              <h2>Mis tareas</h2>
+            </div>
+            <a class="text-link" href="#tareas" data-view="tareas">Ver todas ↗</a>
+          </div>
+          <div class="task-summary" id="task-summary">
+            <span class="summary-check" aria-hidden="true">✓</span>
+            <div>
+              <strong>Tu espacio está listo.</strong>
+              <p>Añade una tarea para comenzar a organizarte.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" id="view-asistente" data-page="asistente" hidden>
+        <div class="page-heading">
+          <p class="eyebrow">ASISTENTE PERSONAL</p>
+          <h1>Vamos a resolverlo.</h1>
+          <p>Cuéntame qué necesitas y encontraremos los siguientes pasos.</p>
+        </div>
+        <div class="standalone-assistant">
+          <div class="assistant-orb" aria-hidden="true">✳</div>
+          <h2>¿Qué tienes en mente?</h2>
+          <p>No necesitas saber qué herramienta utilizar. Empieza por explicarlo.</p>
+          <form class="prompt-form" id="assistant-page-form">
+            <label class="sr-only" for="assistant-page-input">Describe lo que necesitas</label>
+            <textarea id="assistant-page-input" name="message" rows="3"
+              maxlength="2000" placeholder="Escribe aquí..." required></textarea>
+            <div class="prompt-footer">
+              <span class="input-hint">Hasta 2.000 caracteres.</span>
+              <button class="primary-button" type="submit">Consultar ↗</button>
+            </div>
+          </form>
+          <div id="assistant-page-result" class="assistant-result" role="status" aria-live="polite" hidden></div>
+          <p class="notice">La primera versión utilizará herramientas locales de demostración. La IA real se conectará en una fase posterior.</p>
+        </div>
+      </section>
+
+      <section class="view" id="view-tareas" data-page="tareas" hidden>
+        <div class="page-heading">
+          <p class="eyebrow">ORGANIZACIÓN PERSONAL</p>
+          <h1>Mis tareas</h1>
+          <p>Divide tus objetivos en pasos que puedas completar.</p>
+        </div>
+        <section class="content-panel">
+          <form id="task-form" class="inline-form">
+            <label class="sr-only" for="task-input">Nueva tarea</label>
+            <input id="task-input" name="task" type="text" maxlength="160"
+              placeholder="¿Qué necesitas hacer?" required>
+            <button class="primary-button" type="submit">Añadir +</button>
+          </form>
+          <div class="task-progress">
+            <span id="task-progress-label">0 tareas completadas</span>
+            <div class="progress-track"><div id="task-progress-bar" class="progress-fill"></div></div>
+          </div>
+          <ul id="task-list" class="task-list" aria-label="Lista de tareas">
+            <li class="empty-state">Todavía no tienes tareas. Añade la primera arriba.</li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="view" id="view-herramientas" data-page="herramientas" hidden>
+        <div class="page-heading">
+          <p class="eyebrow">UTILIDADES COTIDIANAS</p>
+          <h1>Herramientas</h1>
+          <p>Pequeñas herramientas para resolver cálculos del día a día.</p>
+        </div>
+        <section class="content-panel calculator-panel">
+          <div class="panel-heading">
+            <span class="tool-icon icon-yellow" aria-hidden="true">RD$</span>
+            <div>
+              <h2>Dividir gastos</h2>
+              <p>Calcula cuánto debe aportar cada persona.</p>
+            </div>
+          </div>
+          <form id="split-form" class="calculator-form">
+            <div class="field-group">
+              <label for="total-amount">Importe total (RD$)</label>
+              <input id="total-amount" name="amount" type="number"
+                min="0.01" max="1000000000" step="0.01"
+                placeholder="Ej.: 2400" required>
+            </div>
+            <div class="field-group">
+              <label for="people-count">Número de personas</label>
+              <input id="people-count" name="people" type="number"
+                min="1" max="10000" step="1" value="3" required>
+            </div>
+            <button class="primary-button" type="submit">Calcular reparto</button>
+          </form>
+          <div id="split-result" class="calculation-result" aria-live="polite" hidden></div>
+        </section>
+        <section class="content-panel">
+          <div class="panel-heading">
+            <span class="tool-icon icon-green" aria-hidden="true">%</span>
+            <div>
+              <h2>Calcular porcentaje</h2>
+              <p>Descubre cuánto representa un porcentaje de una cantidad.</p>
+            </div>
+          </div>
+          <form id="percentage-form" class="calculator-form">
+            <div class="field-group">
+              <label for="base-amount">Cantidad</label>
+              <input id="base-amount" name="base" type="number"
+                min="0" max="1000000000" step="0.01" placeholder="Ej.: 1500" required>
+            </div>
+            <div class="field-group">
+              <label for="percentage-value">Porcentaje (%)</label>
+              <input id="percentage-value" name="percentage" type="number"
+                min="0" max="100000" step="0.01" placeholder="Ej.: 15" required>
+            </div>
+            <button class="primary-button" type="submit">Calcular porcentaje</button>
+          </form>
+          <div id="percentage-result" class="calculation-result" aria-live="polite" hidden></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-notas" data-page="notas" hidden>
+        <div class="page-heading">
+          <p class="eyebrow">IDEAS E INFORMACIÓN</p>
+          <h1>Mis notas</h1>
+          <p>Guarda ideas y recordatorios escritos que quieras consultar después.</p>
+        </div>
+        <section class="content-panel">
+          <form id="note-form" class="note-form">
+            <div class="field-group">
+              <label for="note-title">Título</label>
+              <input id="note-title" name="title" type="text"
+                maxlength="100" placeholder="Ej.: Una idea para mañana" required>
+            </div>
+            <div class="field-group">
+              <label for="note-content">Contenido</label>
+              <textarea id="note-content" name="content" rows="4"
+                maxlength="5000" placeholder="Escribe aquí tu nota..." required></textarea>
+            </div>
+            <button class="primary-button" type="submit">Guardar nota +</button>
+          </form>
+          <div id="notes-list" class="notes-grid">
+            <p class="empty-state">Tus notas guardadas aparecerán aquí.</p>
+          </div>
+        </section>
+      </section>
+
+      <footer class="app-footer">
+        <a class="footer-brand" href="#inicio" data-view="inicio">VIDA<span>.</span></a>
+        <p>Una cosa a la vez. Un día a la vez.</p>
+        <span>Primera versión en desarrollo</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
